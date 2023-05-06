@@ -8,12 +8,17 @@ import javax.swing.border.EmptyBorder;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class GUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textnombre;
 	private JTextField textclasi;
@@ -50,30 +55,30 @@ public class GUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		textnombre = new JTextField();
-		textnombre.setBounds(140, 24, 86, 20);
+		textnombre.setBounds(182, 25, 86, 20);
 		contentPane.add(textnombre);
 		textnombre.setColumns(10);
 		
 		textclasi = new JTextField();
-		textclasi.setBounds(140, 68, 86, 20);
+		textclasi.setBounds(182, 69, 86, 20);
 		contentPane.add(textclasi);
 		textclasi.setColumns(10);
 		
 		textaño = new JTextField();
-		textaño.setBounds(140, 120, 86, 20);
+		textaño.setBounds(182, 121, 86, 20);
 		contentPane.add(textaño);
 		textaño.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("NOMBRE");
-		lblNewLabel.setBounds(50, 27, 46, 14);
+		lblNewLabel.setBounds(114, 27, 89, 14);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("CLASIFICACIÓN");
-		lblNewLabel_1.setBounds(23, 71, 107, 14);
+		lblNewLabel_1.setBounds(84, 71, 132, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("AÑO");
-		lblNewLabel_2.setBounds(50, 123, 46, 14);
+		lblNewLabel_2.setBounds(140, 123, 46, 14);
 		contentPane.add(lblNewLabel_2);
 		
 		btnNewButton = new JButton("objeto");
@@ -86,10 +91,30 @@ public class GUI extends JFrame {
 				if(i<4) {
 					arrpelis[i]=peliculasNUEVO;
 					i++;
+					
+					textnombre.setText("");
+					textclasi.setText("");
+					textaño.setText("");
 				}
 			}
 		});
-		btnNewButton.setBounds(10, 179, 89, 23);
+		btnNewButton.setBounds(97, 179, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		JButton btnImprimir = new JButton("Mostrar");
+		btnImprimir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String mostrar = JOptionPane.showInputDialog("¿De que pelicula quieres que te muestre la informacion?");
+				for(int i=0; i<arrpelis.length; i++) {
+					if(arrpelis[i]!=null) {
+						if(arrpelis[i].getNombre().equals(mostrar)) {
+							
+						}
+					}
+				}
+			}
+		});
+		btnImprimir.setBounds(268, 180, 85, 21);
+		contentPane.add(btnImprimir);
 	}
 }
