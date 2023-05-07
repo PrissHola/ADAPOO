@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
@@ -146,5 +147,28 @@ public class GUI extends JFrame {
 		});
 		btnEscribir.setBounds(388, 179, 89, 23);
 		contentPane.add(btnEscribir);
-	}
+		
+		JButton btnLeer = new JButton("Leer");
+		btnLeer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String texto = "";
+				try {
+					FileReader in = new FileReader ("documento equipo pris cesar david montse poo"); 
+					String linea = textArea.getText();
+					int c = in.read();
+					while(c!=-1) {
+						texto = texto +(char)c;
+						c= in.read();
+					}
+					in.close();
+				    } catch (IOException exepcion) {
+				    	System.out.println(exepcion.getMessage());
+					}
+				System.out.println(texto);
+				}
+			});
+		btnLeer.setBounds(487, 179, 89, 23);
+		contentPane.add(btnLeer);
+	
+}
 }
