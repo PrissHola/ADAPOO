@@ -11,7 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
 
 public class GUI extends JFrame {
 
@@ -47,7 +51,7 @@ public class GUI extends JFrame {
 	 */
 	public GUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 722, 288);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -114,7 +118,33 @@ public class GUI extends JFrame {
 				}
 			}
 		});
-		btnImprimir.setBounds(268, 180, 85, 21);
+		btnImprimir.setBounds(229, 180, 85, 21);
 		contentPane.add(btnImprimir);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(373, 23, 276, 134);
+		contentPane.add(textArea);
+		
+		JButton btnEscribir = new JButton("escribir");
+		btnEscribir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					BufferedWriter out = new BufferedWriter(new FileWriter("documento equipo pris cesar david montse poo"));
+					String cadena = textArea.getText();
+					for(int i=0; i< cadena.length(); i++) {
+					   out.write(cadena.charAt(i));
+					}
+					out.newLine();//cambio de línea en el archivo
+					out.write(cadena); // escribimos toda la línea
+					out.close();
+					} catch (IOException exepcion) {
+					// TODO Auto-generated catch block
+					System.out.println(exepcion.getMessage());
+					exepcion.printStackTrace();
+					}
+				}
+		});
+		btnEscribir.setBounds(388, 179, 89, 23);
+		contentPane.add(btnEscribir);
 	}
 }
