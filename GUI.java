@@ -148,7 +148,7 @@ public class GUI extends JFrame {
 		btnEscribir.setBounds(388, 179, 89, 23);
 		contentPane.add(btnEscribir);
 		
-		JButton btnLeer = new JButton("Leer");
+		JButton btnLeer = new JButton("Leer archivo");
 		btnLeer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String texto = "";
@@ -161,6 +161,7 @@ public class GUI extends JFrame {
 						c= in.read();
 					}
 					in.close();
+				
 				    } catch (IOException exepcion) {
 				    	System.out.println(exepcion.getMessage());
 					}
